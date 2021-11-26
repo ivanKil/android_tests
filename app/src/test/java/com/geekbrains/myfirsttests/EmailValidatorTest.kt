@@ -40,4 +40,24 @@ class EmailValidatorTest {
     fun emailValidator_NullEmail_ReturnsFalse() {
         assertFalse(EmailValidator.isValidEmail(null))
     }
+
+    @Test
+    fun emailValidator_NoDomain_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("nodomain.ru"))
+    }
+
+    @Test
+    fun emailValidator_RussianLetters_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("русский@main.ru"))
+    }
+
+    @Test
+    fun emailValidator_ForbiddenSymbol_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("asdf@main.#ru"))
+    }
+
+    @Test
+    fun emailValidator_Whitespace_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail(" "))
+    }
 }
